@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>个人信息页面</title>
+		<link rel="icon" href="img/reindeer.png"/>
+		<link rel="stylesheet" href="css/个人信息页.css" />
+	</head>
+	<body>
+		<h1>请填写个人信息</h1>
+		<form>
+			<fieldset>
+				<legend>基本信息</legend>
+				姓名
+				<input type="text" name="name" placeholder="请输入姓名" required/>
+				<br />
+				年龄
+				<input type="number" name="age" min="1" max="100" step="1" />
+	    	</fieldset>
+	    	<fieldset>
+	    		<legend>你想在哪里收到邮件？</legend>
+	    		邮箱
+	    		<input name="email" placeholder="请输入邮箱" autocomplete="off" list="names" required />
+	    		<datalist id="names">
+					<option>@qq.com</option>
+					<option>@163.com</option>
+					<option>@gmail.com</option>
+					<option>@yahoo.com.cn</option>
+					<option>@126.com</option>
+				</datalist>
+	    	</fieldset>
+	    	<fieldset>
+	    		<legend>收入情况</legend>
+	    		月收入
+	    		<input type="number" name="income" min="4000" max="20000" step="500"/>
+	    		<br />
+	    		银行卡
+	    		<input type="text" name="card" />
+	    		有效期
+	    		<input type="date" name="datedemo" />
+	    	</fieldset>
+	    	<fieldset>
+	    		<legend>选取提交文件</legend>
+	    		文件
+	    		<input type="file"/>	    		
+	    	</fieldset>
+	    	<input type="submit" name="提交"/>
+		</form>
+	</body>
+</html>
