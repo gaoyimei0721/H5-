@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>七巧板</title>
+		<link rel="icon" href="img/reindeer.png"/>
+	</head>
+	<body>
+		<canvas id="canvas" width="400" height="400">
+			 您的浏览器不支持 canvas 元素，请更换或更新浏览器 
+		</canvas>
+		<script>
+			var canvas = document.getElementById("canvas");
+			var context = canvas.getContext('2d');
+			
+			context.beginPath();
+			context.moveTo(0,0);
+			context.lineTo(400,0);
+			context.lineTo(200,200);
+			context.lineTo(0,0);
+			context.strokeStyle = "beige";
+			context.fillStyle = "greenyellow";
+			context.fill();
+			
+			context.beginPath();
+			context.moveTo(0,0);
+			context.lineTo(0,400);
+			context.lineTo(200,200);
+			context.lineTo(0,0);
+			context.strokeStyle = "beige";
+			context.fillStyle = "cadetblue";
+			context.fill();
+			
+			context.beginPath();
+			context.moveTo(400,0);
+			context.lineTo(0,400);
+			context.lineTo(400,400);
+			context.lineTo(400,0);
+			context.strokeStyle = "beige";
+			context.fillStyle = "crimson";
+			context.fill();
+			
+			context.beginPath();
+			context.moveTo(200,200);
+			context.lineTo(300,100);
+			context.lineTo(300,300);
+			context.lineTo(200,200);
+			context.strokeStyle = "beige";
+			context.fillStyle = "yellow";
+			context.fill();
+			
+			context.beginPath();
+			context.moveTo(200,200);			
+			context.lineTo(300,300);
+			context.lineTo(200,400);
+			context.lineTo(100,300);
+			context.moveTo(200,200);
+			context.strokeStyle = "beige";
+			context.fillStyle = "mediumpurple";
+			context.fill();
+			
+			context.beginPath();
+			context.moveTo(100,300);
+			context.lineTo(200,400);
+			context.lineTo(0,400);
+			context.lineTo(100,300);
+			context.strokeStyle = "beige";
+			context.fillStyle = "hotpink";
+			context.fill();
+			
+			context.beginPath();
+			context.moveTo(400,200);
+			context.lineTo(200,400);
+			context.lineTo(400,400);
+			context.lineTo(400,200);
+			context.strokeStyle = "orange";
+			context.fillStyle = "orange";
+			context.fill();
+			context.stroke();
+		</script>
+	</body>
+</html>
