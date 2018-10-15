@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>钟表</title>
+		<link rel="icon" href="img/reindeer.png" />
+		<style>
+			canvas {
+				border: 1px solid red;
+				background-color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="canvas" width="400" height="400">
+			 您的浏览器不支持 canvas 元素，请更换或更新浏览器 
+		</canvas>
+		<script>
+			var canvas = document.getElementById("canvas");
+			var ctx = canvas.getContext('2d');
+			horologium();
+			function horologium() {	
+				ctx.save();
+				ctx.clearRect(0,0,400,400);
+				//移动坐标原点到画布中心
+				ctx.translate(200, 200);
+				//表盘
+				ctx.beginPath();
+				ctx.arc(0, 0, 160, 0, 2 * Math.PI);
+				ctx.lineWidth = 6;
+				ctx.strokeStyle = "greenyellow";
+				ctx.stroke();
+				ctx.closePath();
+				//分针刻度
+				ctx.beginPath();
+				ctx.fillStyle = "black";
+				for(var i = 0; i < 60; i++) {
+					ctx.fillRect(0, 130, 3, 10);
+					ctx.rotate(6 / 180 * Math.PI);
+				}
+				//时针刻度
+				ctx.beginPath();
+				ctx.fillStyle = "red";
+				for(var i = 0; i < 12; i++) {
+					ctx.fillRect(0, 120, 6, 20);
+					ctx.rotate(30 / 180 * Math.PI);
+				}
+				//数字
+				ctx.beginPath();
+				ctx.fillStyle = "black";
+				for(var i = 1; i < 13; i++) {
+					ctx.save(); //保存坐标轴位置
+					ctx.textAlign = "center";
+					ctx.fillStyle = "gray";
+					ctx.font = "normal 15px arial"
+					//移动数字到它该在的位置
+					ctx.translate(Math.sin(i * 30 / 180 * Math.PI) * 105, -Math.cos(i * 30 / 180 * Math.PI) * 105);
+					ctx.fillText(i, 0, 5);
+					ctx.restore(); //恢复坐标轴位置
+				}
+				//新建时间变量，获取时、分、秒三个变量
+				var time = new Date();
+				var h = time.getHours();
+				var m = time.getMinutes();
+				var s = time.getSeconds();
+				//时针的角度=360/12*小时+360/12/60分钟+360/12/60/60秒;
+				//时针的弧度= π/6*小时+π/360*分钟+π/2160*秒
+				ctx.save();
+				ctx.strokeStyle = "purple";
+				ctx.lineWidth = 6;
+				ctx.beginPath();
+				ctx.rotate((Math.PI / 6) * h +
+					(Math.PI / 360) * m +
+					(Math.PI / 2160) * s);
+				ctx.moveTo(0, 1);
+				ctx.lineTo(0, -90);
+				ctx.fill();
+				ctx.stroke();
+				ctx.restore();
+				//分针的角度=360/60*分钟+360/60/60*秒
+				//分针的弧度 =π/30*分钟+π/1800*秒
+				ctx.save();
+				ctx.strokeStyle = "pink";
+				ctx.lineWidth = 4;
+				ctx.beginPath();
+				ctx.rotate((Math.PI / 30) * m +
+					(Math.PI / 1800) * s);
+				ctx.moveTo(0, 1);
+				ctx.lineTo(0, -105);
+				ctx.fill();
+				ctx.stroke();
+				ctx.restore();
+				//秒针的角度=360/60*秒
+				//秒针的弧度 =π/30*秒
+				ctx.save();
+				ctx.strokeStyle = "red";
+				ctx.lineWidth = 3;
+				ctx.beginPath();
+				ctx.rotate((Math.PI / 30) * s);
+				ctx.moveTo(0, 8);
+				ctx.lineTo(0, -120);
+				ctx.fill();
+				ctx.stroke();
+				ctx.closePath();
+				ctx.restore();
+				//在秒针上绘制一个圆
+				ctx.beginPath();
+				ctx.rotate((Math.PI / 30) * s);
+				ctx.arc(0, -90, 4, 0, Math.PI * 2, true);
+        		ctx.lineWidth = 2;
+        		ctx.fillStyle = "black";
+        		ctx.strokeStyle = "red";				
+        		ctx.fill();
+        		ctx.stroke();
+				//在表盘中心绘制一个圆点
+				ctx.beginPath();
+				ctx.arc(0, 0, 4, 0, Math.PI * 2, true);
+        		ctx.lineWidth = 2;
+        		ctx.fillStyle = "black";
+        		ctx.strokeStyle = "red";				
+        		ctx.fill();
+        		ctx.stroke();
+				ctx.restore();
+			}
+			setInterval("horologium()",1000);
+		</script>
+
+	</body>
+
+</html>
