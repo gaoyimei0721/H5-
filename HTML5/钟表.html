@@ -9,6 +9,8 @@
 			canvas {
 				border: 1px solid red;
 				background-color: white;
+				display:block;
+				margin:0 auto;
 			}
 		</style>
 	</head>
@@ -56,7 +58,8 @@
 					ctx.fillStyle = "gray";
 					ctx.font = "normal 15px arial"
 					//移动数字到它该在的位置
-					ctx.translate(Math.sin(i * 30 / 180 * Math.PI) * 105, -Math.cos(i * 30 / 180 * Math.PI) * 105);
+					ctx.translate(Math.sin(i * 30 / 180 * Math.PI) * 105, 
+					-Math.cos(i * 30 / 180 * Math.PI) * 105);
 					ctx.fillText(i, 0, 5);
 					ctx.restore(); //恢复坐标轴位置
 				}

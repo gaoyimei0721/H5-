@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>滑杆缩放图像</title>
+		<link rel="icon" href="img/reindeer.png"/>
+		<style>
+			canvas{
+				border: 1px solid gray;
+				background-color: whitesmoke;
+				display:block;
+				margin:0 auto;
+			}
+			#scale-range{
+				display:block;
+				margin:20px auto;
+				width:400px
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="512" height="512">
+			 您的浏览器不支持 canvas 元素，请更换或更新浏览器 
+		</canvas>
+		<input type="range" id="scale-range" name="rdemo" min="0.5" max="3" step="0.1" value="1"/>
+		
+		<script>
+			var canvas = document.getElementById("canvas");
+			var ctx = canvas.getContext('2d');
+			var slider = document.getElementById("scale-range");
+			var img = new Image();
+			
+			window.onload = function(){
+				var scale = slider.value;
+				image.src = 'img/reindeer.png';
+				image.onload = function(){
+					drawImageByScale(scale);
+					slider.onmousemove = function(){
+						scale = slide.value;
+						drawImageByScale(scale);
+					}
+				}
+			}
+			
+			function drawImageByScale(scale){
+				var imageWidth = 512 * scale;
+				var imageHeight = 512 * scale;
+				
+				x = cnvas.width/2 
+				        - imageWidth / 2;
+				y = cnvas.height/2 
+				        - imageHeight / 2;  
+				        
+				context.clearRect( 0 , 0 , canvas.width , canvas.height );
+            	context.drawImage( image , x , y , imageWidth , imageHeight );
+			}
+		</script>
+	</body>
+</html>
